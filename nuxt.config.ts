@@ -1,0 +1,15 @@
+// https://nuxt.com/docs/api/configuration/nuxt-config
+export default defineNuxtConfig({
+  devtools: { enabled: true },
+  typescript: {
+    typeCheck: true,
+  },
+
+  modules: ['@nuxtjs/tailwindcss', 'nuxt-graphql-client'],
+
+  runtimeConfig: {
+    public: {
+      GQL_HOST: 'https://api.spacex.land/graphql', // inserire l'url delle API che vogliamo
+    },
+  },
+})
