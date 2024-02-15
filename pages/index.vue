@@ -1,12 +1,92 @@
+<script setup lang="ts">
+import { useScroll } from '@vueuse/core'
+
+const carousel = ref<HTMLElement | null>(null)
+const { x, arrivedState, isScrolling } = useScroll(carousel, { behavior: 'smooth' })
+
+
+
+</script>
 <template>
     <div class="px-12 mx-auto">
         <div class="flex">
             <!-- Main feed -->
-            <div class="w-3/4 pr-4 overflow-auto">
-                <!-- <div v-for=" post in posts" :key="post.id">
-        </div> -->
+            <div class="w-3/4 pr-4 overflow-auto ">
+                <!-- <div v-for=" post in posts" :key="post.id"></div> -->
 
+                <!--Literal categories filter   -->
+                <div class="relative ">
+                    <div class="absolute inset-y-0 left-0 w-40 ">
+                        <!-- add category button -->
+                        <button v-if="arrivedState.left" class="absolute p-2 z-2 top-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 1024 1024"
+                                class="h-4 mt-3">
+                                <path fill="currentColor"
+                                    d="M480 480V128a32 32 0 0 1 64 0v352h352a32 32 0 1 1 0 64H544v352a32 32 0 1 1-64 0V544H128a32 32 0 0 1 0-64z" />
+                            </svg>
+                        </button>
+                        <!-- scroll left button -->
+                        <button v-else @click="x -= 45"
+                            class="absolute p-2 pr-40 bg-gradient-to-r from-white to-transparent z-2 top-6"><svg
+                                xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 1024 1024"
+                                class="h-4 mt-3 ">
+                                <path fill="currentColor"
+                                    d="M685.248 104.704a64 64 0 0 1 0 90.496L368.448 512l316.8 316.8a64 64 0 0 1-90.496 90.496L232.704 557.248a64 64 0 0 1 0-90.496l362.048-362.048a64 64 0 0 1 90.496 0" />
+                            </svg>
+                        </button>
+                    </div>
+                    <!-- Array of categories  -->
+                    <div ref="carousel" class="flex pt-10 overflow-x-hidden pb-14 mx-14 snap-x gap-x-12">
+                        <div class="snap-normal whitespace-nowrap">
+                            <p>For you</p>
+                        </div>
+                        <div class="snap-normal whitespace-nowrap">
+                            <p>Following</p>
+                        </div>
+                        <div class="snap-normal whitespace-nowrap ">
+                            <p>Web Development</p>
+                        </div>
+                        <div class="snap-normal whitespace-nowrap">
+                            <p>Data Science</p>
+                        </div>
+                        <div class="snap-normal whitespace-nowrap">
+                            <p>UX Design</p>
+                        </div>
+                        <div class="snap-normal whitespace-nowrap">
+                            <p>Python</p>
+                        </div>
+                        <div class="snap-normal whitespace-nowrap">
+                            <p>Artificial Intelligence</p>
+                        </div>
+                        <div class="snap-normal whitespace-nowrap">
+                            <p>React</p>
+                        </div>
+                        <div class="snap-normal whitespace-nowrap">
+                            <p>Coding</p>
+                        </div>
+                        <div class="snap-normal whitespace-nowrap">
+                            <p>Programming</p>
+                        </div>
+                        <div class="snap-normal whitespace-nowrap">
+                            <p>JavaScript</p>
+                        </div>
+                        <div class="absolute inset-y-0 right-0">
+                            <!-- hidden when reaches the limit on right side -->
+                            <button v-if="arrivedState.right" class="hidden" />
+                            <!-- scroll right button -->
+                            <button v-else @click="x += 45"
+                                class="absolute right-0 p-2 pl-40 z-2 bg-gradient-to-l from-white to-transparent top-6">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 1024 1024"
+                                    class="h-4 mt-3">
+                                    <path fill="currentColor"
+                                        d="M338.752 104.704a64 64 0 0 0 0 90.496l316.8 316.8l-316.8 316.8a64 64 0 0 0 90.496 90.496l362.048-362.048a64 64 0 0 0 0-90.496L429.248 104.704a64 64 0 0 0-90.496 0" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
+            <!-- ############### RIGHT COLUMN ###############  -->
 
             <!-- Staff pick -->
             <div class="sticky top-0 w-1/4 px-2">
@@ -34,7 +114,7 @@
                 <div class="">
                     <!-- header -->
                     <div class="flex gap-x-1">
-                        <img src="../public/img/staffUser2.png" alt="Basquiat propic" class="h-6 rounded-full" />
+                        <img src="/img/staffUser2.png" alt="Basquiat propic" class="h-6 rounded-full" />
                         <p>Jean-Michel Basquiat</p>
                     </div>
                     <!-- Title of post -->
@@ -46,7 +126,7 @@
                 <div class="py-2">
                     <!-- header -->
                     <div class="flex gap-x-1">
-                        <img src="../public/img/staffUser3.png" alt="Warhol propic" class="h-6 rounded-full" />
+                        <img src="/img/staffUser3.png" alt="Warhol propic" class="h-6 rounded-full" />
                         <p>Andy Warhol</p>
                     </div>
                     <!-- Title of post -->
@@ -83,7 +163,7 @@
 
                 <div class="grid grid-flow-col grid-rows-3 gap-1">
                     <div class="row-span-3">
-                        <img src="../public/img/suggestedUser.png" alt="monet" class="h-8 mr-4 rounded-full">
+                        <img src="/img/suggestedUser.png" alt="monet" class="h-8 mr-4 rounded-full">
                     </div>
                     <div class="col-span-2 font-semibold text-md ">Claude Monet</div>
                     <div class="col-span-2 row-span-2 text-xs font-thin "> Impressionist/Social media manager</div>
@@ -94,7 +174,7 @@
                 </div>
                 <div class="grid grid-flow-col grid-rows-3 gap-1">
                     <div class="row-span-3">
-                        <img src="../public/img/suggestedUser1.png" alt="monet" class="h-8 mr-4 rounded-full">
+                        <img src="/img/suggestedUser1.png" alt="monet" class="h-8 mr-4 rounded-full">
                     </div>
                     <div class="col-span-2 font-semibold text-md ">Francisco Goya</div>
                     <div class="col-span-2 row-span-2 text-xs font-thin "> Romanticism/Crysis manager</div>
@@ -105,8 +185,7 @@
                 </div>
                 <div class="grid grid-flow-col grid-rows-2 gap-1">
                     <div class="row-span-2">
-                        <img src="../public/img/suggestedUser2.png" alt="monet"
-                            class="justify-center h-8 mr-4 rounded-full">
+                        <img src="/img/suggestedUser2.png" alt="monet" class="justify-center h-8 mr-4 rounded-full">
                     </div>
                     <div class="col-span-2 font-semibold text-md ">Pierre-Auguste Renoir</div>
                     <div class="col-span-2 row-span-1 text-xs font-thin ">Impressionist/Video maker</div>
@@ -119,7 +198,8 @@
                 <!-- bookmark -->
                 <div class="flex flex-wrap m-0 text-sm">
                     <span>Click the <img src="/icons/bookmark.png" alt="bookmark icon" class="inline-block h-6">
-                        on any story to easily add it to your reading list or a custom list that you can share</span>
+                        on any story to easily add it to your reading list or a custom list that you can
+                        share</span>
                 </div>
                 <!-- Links -->
             </div>
