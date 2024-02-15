@@ -8,30 +8,32 @@ const { x, arrivedState } = useScroll(carousel, { behavior: 'smooth' })
 1. x = right and left scroll
 2. arrivedState =  false when scrolling x-axis || true when right limit or left limit
  */
-
+const filters = ['For you', 'Following', 'Web Development', 'Data Science', 'UX Design', 'Python', 'Artificial Intelligence', 'React', 'Coding', 'Programming', 'JavaScript']
+const currentFilter = ref(filters[0])
 
 </script>
 <template>
-    <div class="px-12 mx-auto">
+    <div class="px-16 mx-auto">
         <div class="flex">
+            <!-- ############### MAIN/lEFT COLUMN ###############  -->
             <!-- Main feed -->
             <div class="w-3/4 pr-4 overflow-auto ">
                 <!-- <div v-for=" post in posts" :key="post.id"></div> -->
 
                 <!--Literal categories filter   -->
                 <div class="relative ">
-                    <div class="absolute inset-y-0 left-0 w-40 ">
+                    <div class="absolute inset-y-0 left-0 pr-20 ">
                         <!-- add category button -->
-                        <button v-if="arrivedState.left" class="absolute p-2 z-2 top-6">
+                        <button v-if="arrivedState.left" class="absolute p-2 mt-3 rounded-full z-2 top-6">
                             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 1024 1024"
-                                class="h-4 mt-3">
+                                class="h-4 ">
                                 <path fill="currentColor"
                                     d="M480 480V128a32 32 0 0 1 64 0v352h352a32 32 0 1 1 0 64H544v352a32 32 0 1 1-64 0V544H128a32 32 0 0 1 0-64z" />
                             </svg>
                         </button>
                         <!-- scroll left button -->
-                        <button v-else @click="x -= 45"
-                            class="absolute p-2 pr-40 bg-gradient-to-r from-white to-transparent z-2 top-6"><svg
+                        <button v-else @click="x -= 60"
+                            class="absolute p-2 pr-14 bg-gradient-to-r from-white to-transparent z-2 top-6"><svg
                                 xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 1024 1024"
                                 class="h-4 mt-3 ">
                                 <path fill="currentColor"
@@ -39,48 +41,19 @@ const { x, arrivedState } = useScroll(carousel, { behavior: 'smooth' })
                             </svg>
                         </button>
                     </div>
-                    <!-- Array of categories  -->
+
                     <div ref="carousel"
                         class="flex pt-10 overflow-x-hidden mx-14 snap-x gap-x-12 border-b-[1px] border-b-slate-400">
-                        <div class="snap-normal whitespace-nowrap ">
-                            <p>For you</p>
-                        </div>
-                        <div class="snap-normal whitespace-nowrap">
-                            <p>Following</p>
-                        </div>
-                        <div class="snap-normal whitespace-nowrap border-b-[1px] pb-2 border-b-black ">
-                            <p>Web Development</p>
-                        </div>
-                        <div class="snap-normal whitespace-nowrap">
-                            <p>Data Science</p>
-                        </div>
-                        <div class="snap-normal whitespace-nowrap">
-                            <p>UX Design</p>
-                        </div>
-                        <div class="snap-normal whitespace-nowrap ">
-                            <p>Python</p>
-                        </div>
-                        <div class="snap-normal whitespace-nowrap">
-                            <p>Artificial Intelligence</p>
-                        </div>
-                        <div class="snap-normal whitespace-nowrap">
-                            <p>React</p>
-                        </div>
-                        <div class="snap-normal whitespace-nowrap">
-                            <p>Coding</p>
-                        </div>
-                        <div class="snap-normal whitespace-nowrap">
-                            <p>Programming</p>
-                        </div>
-                        <div class="snap-normal whitespace-nowrap">
-                            <p>JavaScript</p>
+                        <div v-for="(filter, index) in filters" :key="index" class="snap-normal whitespace-nowrap"
+                            :class="{ 'border-b-[1px] pb-2 border-b-black': currentFilter === filter }">
+                            <button @click="currentFilter = filter">{{ filter }}</button>
                         </div>
                         <div class="absolute inset-y-0 right-0">
                             <!-- hidden when reaches the limit on right side -->
                             <button v-if="arrivedState.right" class="hidden" />
                             <!-- scroll right button -->
-                            <button v-else @click="x += 45"
-                                class="absolute right-0 p-2 pl-40 z-2 bg-gradient-to-l from-white to-transparent top-6">
+                            <button v-else @click="x += 60"
+                                class="absolute right-0 p-2 pl-14 z-2 bg-gradient-to-l from-white to-transparent top-6">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 1024 1024"
                                     class="h-4 mt-3">
                                     <path fill="currentColor"
