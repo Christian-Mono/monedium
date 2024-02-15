@@ -2,8 +2,12 @@
 import { useScroll } from '@vueuse/core'
 
 const carousel = ref<HTMLElement | null>(null)
-const { x, arrivedState, isScrolling } = useScroll(carousel, { behavior: 'smooth' })
 
+const { x, arrivedState } = useScroll(carousel, { behavior: 'smooth' })
+/* 
+1. x = right and left scroll
+2. arrivedState =  false when scrolling x-axis || true when right limit or left limit
+ */
 
 
 </script>
@@ -36,14 +40,15 @@ const { x, arrivedState, isScrolling } = useScroll(carousel, { behavior: 'smooth
                         </button>
                     </div>
                     <!-- Array of categories  -->
-                    <div ref="carousel" class="flex pt-10 overflow-x-hidden pb-14 mx-14 snap-x gap-x-12">
-                        <div class="snap-normal whitespace-nowrap">
+                    <div ref="carousel"
+                        class="flex pt-10 overflow-x-hidden mx-14 snap-x gap-x-12 border-b-[1px] border-b-slate-400">
+                        <div class="snap-normal whitespace-nowrap ">
                             <p>For you</p>
                         </div>
                         <div class="snap-normal whitespace-nowrap">
                             <p>Following</p>
                         </div>
-                        <div class="snap-normal whitespace-nowrap ">
+                        <div class="snap-normal whitespace-nowrap border-b-[1px] pb-2 border-b-black ">
                             <p>Web Development</p>
                         </div>
                         <div class="snap-normal whitespace-nowrap">
@@ -52,7 +57,7 @@ const { x, arrivedState, isScrolling } = useScroll(carousel, { behavior: 'smooth
                         <div class="snap-normal whitespace-nowrap">
                             <p>UX Design</p>
                         </div>
-                        <div class="snap-normal whitespace-nowrap">
+                        <div class="snap-normal whitespace-nowrap ">
                             <p>Python</p>
                         </div>
                         <div class="snap-normal whitespace-nowrap">
@@ -84,8 +89,11 @@ const { x, arrivedState, isScrolling } = useScroll(carousel, { behavior: 'smooth
                             </button>
                         </div>
                     </div>
+                    <!-- end carousel -->
+                    <Articles />
                 </div>
             </div>
+
             <!-- ############### RIGHT COLUMN ###############  -->
 
             <!-- Staff pick -->
