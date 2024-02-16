@@ -17,7 +17,7 @@ const currentFilter = ref(filters[0])
         <div class="flex">
             <!-- ############### MAIN/lEFT COLUMN ###############  -->
             <!-- Main feed -->
-            <div class="w-3/4 pr-4 overflow-auto ">
+            <div class="w-4/6 pr-4 overflow-auto ">
                 <!-- <div v-for=" post in posts" :key="post.id"></div> -->
 
                 <!--Literal categories filter   -->
@@ -70,7 +70,7 @@ const currentFilter = ref(filters[0])
             <!-- ############### RIGHT COLUMN ###############  -->
 
             <!-- Staff pick -->
-            <div class="sticky top-0 w-1/4 px-2">
+            <div class="sticky top-0 w-2/6 px-8 border-2 border-l-gray-200">
                 <!--  <div v-for="pick in staffPicks" :key="pick.id">
                 </div> -->
                 <div class="items-center py-8 text-center">
@@ -83,7 +83,7 @@ const currentFilter = ref(filters[0])
                 <div class="py-2">
                     <!-- header -->
                     <div class="flex gap-x-1">
-                        <img src="../public/img/staffUser1.png" alt="Picasso propic" class="h-6 rounded-full" />
+                        <img src="/img/staffUser1.png" alt="Picasso propic" class="h-6 rounded-full" />
                         <p>Pablo Picasso</p>
                     </div>
                     <!-- Title of post -->
