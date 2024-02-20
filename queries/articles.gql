@@ -1,0 +1,26 @@
+query Articles {
+  articleCollection {
+    items {
+      title
+      content
+      creationTime
+      readingTime
+      thumbnail {
+        url
+      }
+
+      sys {
+        id
+      }
+      author {
+        name
+        profilePicture {
+          url
+        }
+      }
+      tag {
+        tagName
+      }
+    }
+  }
+}

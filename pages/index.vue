@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { useScroll } from '@vueuse/core'
 
-const carousel = ref<HTMLElement | null>(null)
 
+const carousel = ref<HTMLElement | null>(null)
 const { x, arrivedState } = useScroll(carousel, { behavior: 'smooth' })
 /* 
 1. x = right and left scroll

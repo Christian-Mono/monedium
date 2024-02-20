@@ -1,5 +1,5 @@
 <template>
     <h1 class="bg-cyan-400">
-        Hello to slug page
+        Mannaggia a quel maledetto signore
     </h1>
 </template>
