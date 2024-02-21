@@ -1,0 +1,15 @@
+query tags {
+  tagCollection {
+    items {
+      sys {
+        id
+      }
+      tagName
+      linkedFrom {
+        articleCollection {
+          total
+        }
+      }
+    }
+  }
+}

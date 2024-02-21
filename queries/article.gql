@@ -1,6 +1,12 @@
-query Article($id: String = "FiKAiNn4KSB1ohMsHrUZH") {
-  article(id: $id) {
-    title
-    slug
+query articleCollection($id: String!) {
+  articleCollection(where: { slug: $id }) {
+    items {
+      title
+      slug
+      content
+      sys {
+        id
+      }
+    }
   }
 }

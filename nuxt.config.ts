@@ -4,27 +4,14 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
 
   modules: ['@nuxtjs/tailwindcss', '@vueuse/nuxt', 'nuxt-graphql-client'],
-
-  runtimeConfig: {
-    public: {
-      'graphql-client': {
-        watch: true,
-        autoImport: true,
-        functionPrefix: 'Gql',
-        documentPaths: ['./'],
-        preferGETQueries: false,
-        silent: true,
-        retainToken: true,
-        clients: {
-          default: {
-            host: process.env.GQL_HOST,
-
-            token: {
-              type: 'Bearer',
-              name: 'Authorization',
-              value: process.env.NUXT_CONTENTFUL_ACCESS_KEY,
-            },
-          },
+  'graphql-client': {
+    clients: {
+      default: {
+        host: 'https://graphql.contentful.com/content/v1/spaces/y4cbujh9kpq2/environments/master/',
+        token: {
+          type: 'Bearer',
+          name: 'Authorization',
+          value: 'A5_RDUNnvlO_KxiE3yfmODA1m9ACYI2bHvO903ztM-Y',
         },
       },
     },

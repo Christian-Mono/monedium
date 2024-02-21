@@ -1,7 +1,10 @@
 <script setup lang="ts">
-import { useScroll } from '@vueuse/core'
+import { useScroll, useSorted } from '@vueuse/core'
+/* graphql */
 const data = await GqlArticles()
 const articles = data.articleCollection?.items
+
+
 
 
 const carousel = ref<HTMLElement | null>(null)
@@ -10,9 +13,8 @@ const { x, arrivedState } = useScroll(carousel, { behavior: 'smooth' })
 1. x = right and left scroll
 2. arrivedState =  false when scrolling x-axis || true when right limit or left limit
  */
-const filters = ['For you', 'Following', 'Web Development', 'Data Science', 'UX Design', 'Python', 'Artificial Intelligence', 'React', 'Coding', 'Programming', 'JavaScript']
-const currentFilter = ref(filters[0])
-
+const tags = await GqlTags()
+console.log(tags)
 </script>
 <template>
     <div class="px-16 mx-auto">
@@ -46,9 +48,11 @@ const currentFilter = ref(filters[0])
 
                     <div ref="carousel"
                         class="flex pt-10 overflow-x-hidden mx-14 snap-x gap-x-12 border-b-[1px] border-b-slate-400">
-                        <div v-for="(filter, index) in filters" :key="index" class="snap-normal whitespace-nowrap"
+
+                        <div v-for="(tag, index) in tags.tagCollection.items" :key="index"
+                            class="snap-normal whitespace-nowrap"
                             :class="{ 'border-b-[1px] pb-2 border-b-black': currentFilter === filter }">
-                            <button @click="currentFilter = filter">{{ filter }}</button>
+                            <button @click="currentFilter = tag">{{ tag.tagName }}</button>
                         </div>
                         <div class="absolute inset-y-0 right-0">
                             <!-- hidden when reaches the limit on right side -->

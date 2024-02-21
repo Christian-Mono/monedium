@@ -9,7 +9,7 @@ const props = defineProps<Article>()
   <div class="p-4 pt-6 ">
     <!-- post section -->
 
-    <NuxtLink :to="{ path: `article/${slug}`, query: { id: id } }" class="pb-4 pt-6 border-b-[1px] border-b-gray-200">
+    <NuxtLink :to="`article/${slug}`" class="pb-4 pt-6 border-b-[1px] border-b-gray-200">
       <!-- header -->
       <div class="flex py-2 gap-x-2">
         <img :src="author?.profilePicture.url" :alt="author?.name" class="w-6 h-6 rounded-full" />
@@ -50,7 +50,7 @@ const props = defineProps<Article>()
           </div>
         </div>
         <img :src="thumbnail.url" :alt="title"
-          class="col-span-1 col-start-4 row-span-2 row-start-1 place-self-center h-28">
+          class="object-cover col-span-1 col-start-4 row-span-2 row-start-1 place-self-center h-28">
       </div>
     </NuxtLink>
   </div>

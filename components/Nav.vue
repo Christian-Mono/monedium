@@ -4,10 +4,10 @@
         <div class="flex w-5/6 pl-6 gap-x-2 ">
 
             <!-- LOGO -->
-            <div class="flex items-center h-14">
+            <NuxtLink to="/" class="flex items-center h-14">
                 <img src="/img/Logo-white.png" alt="monedium logo" class=" bg-[#E8E8E8] h-8" />
                 <!-- <p class="flex items-center text-2xl font-black">Monedium</p> -->
-            </div>
+            </NuxtLink>
             <!-- SEARCHBAR -->
             <div class=" hidden sm:flex items-center h-10 px-2 my-2 font-semibold bg-[#F9F9F9] rounded-3xl">
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 1024 1024"
