@@ -1,63 +1,36 @@
 <script setup lang="ts">
 import { formatDateTime } from '~/utils/utils.js';
-const data = await GqlArticles()
-const articles = data.articleCollection?.items
+import type { Article } from '../types/monediumTypes';
 
-/* Interfaces */
-interface ArticlesResponse {
-  articleCollection: {
-    items: Article[]
-  }
-}
-interface Article {
-  title: string
-  content: string
-  creationTime: string
-  readingTime: string
-  thumbnail: {
-    url: string
-  }
-  sys: {
-    id: string
-  }
-  author: {
-    name: string
-    profilePicture: {
-      url: string
-    }
-  }
-  tag: {
-    tagName: string
-  }
-  formattedCreationTime?: string
-}
+const props = defineProps<Article>()
+
 </script>
 <template>
   <div class="p-4 pt-6 ">
     <!-- post section -->
-    <div v-for="article in articles" class="pb-4 pt-6 border-b-[1px] border-b-gray-200">
+
+    <NuxtLink :to="{ path: `article/${slug}`, query: { id: id } }" class="pb-4 pt-6 border-b-[1px] border-b-gray-200">
       <!-- header -->
       <div class="flex py-2 gap-x-2">
-        <img v-if="article?.thumbnail?.url" :src="article?.author?.profilePicture?.url" :alt="article.author?.name"
-          class="w-6 h-6 rounded-full" />
-        <p>{{ article?.author?.name }}</p>
+        <img :src="author?.profilePicture.url" :alt="author?.name" class="w-6 h-6 rounded-full" />
+        <p>{{ author?.name }}</p>
         <span>•</span>
-        <p>{{ formatDateTime(article?.creationTime) }}</p>
+        <p>{{ formatDateTime(creationTime) }}</p>
       </div>
       <!-- grid of post -->
 
       <div class="grid grid-cols-4 grid-rows-3 gap-2">
         <h2 class="h-8 col-span-3 row-span-1 text-2xl font-bold">
-          {{ article?.title }}
+          {{ title }}
         </h2>
         <p class="col-span-3 row-span-1 line-clamp-2">
-          {{ article?.content }}
+          {{ content }}
         </p>
         <div class="col-span-3 row-span-1 py-2 ">
           <div class="flex">
             <div class="flex items-center justify-start w-3/4 gap-x-4">
-              <button class="px-2 bg-gray-400 rounded-full">{{ article?.tag?.tagName }}</button>
-              <p class="mx-auto text-center">{{ article?.readingTime }} mins to read</p>
+              <button class="px-2 bg-gray-400 rounded-full">{{ tag.tagName }}</button>
+              <p class="font-thin text-center">{{ readingTime }} mins to read</p>
             </div>
             <div class="flex justify-end w-1/4 pr-3 gap-x-4 place-self-center">
               <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="h-6">
@@ -76,9 +49,9 @@ interface Article {
             </div>
           </div>
         </div>
-        <img v-if="article?.thumbnail?.url" :src="article?.thumbnail?.url" :alt="article.title"
+        <img :src="thumbnail.url" :alt="title"
           class="col-span-1 col-start-4 row-span-2 row-start-1 place-self-center h-28">
       </div>
-    </div>
+    </NuxtLink>
   </div>
-</template>
+</template>../types/Article.props

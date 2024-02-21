@@ -1,0 +1,6 @@
+query Article($id: String = "FiKAiNn4KSB1ohMsHrUZH") {
+  article(id: $id) {
+    title
+    slug
+  }
+}

@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { useScroll } from '@vueuse/core'
+const data = await GqlArticles()
+const articles = data.articleCollection?.items
 
 
 const carousel = ref<HTMLElement | null>(null)
@@ -63,7 +65,10 @@ const currentFilter = ref(filters[0])
                         </div>
                     </div>
                     <!-- end carousel -->
-                    <Articles />
+
+                    <Article v-for="article in articles" :key="article?.sys.id" v-bind="article" :author="article?.author"
+                        :slug="article?.slug" :id="article?.sys.id" />
+
                 </div>
             </div>
 

@@ -2,6 +2,7 @@ query Articles {
   articleCollection {
     items {
       title
+      slug
       content
       creationTime
       readingTime
