@@ -54,4 +54,4 @@ const props = defineProps<Article>()
       </div>
     </NuxtLink>
   </div>
-</template>../types/Article.props
+</template>

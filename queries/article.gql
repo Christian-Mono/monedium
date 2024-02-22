@@ -4,8 +4,26 @@ query articleCollection($id: String!) {
       title
       slug
       content
+      creationTime
+      readingTime
+      claps
+      thumbnail {
+        url
+      }
       sys {
         id
+      }
+      tag {
+        tagName
+      }
+      author {
+        name
+        bio
+        positionRole
+        followers
+        profilePicture {
+          url
+        }
       }
     }
   }

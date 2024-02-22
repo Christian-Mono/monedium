@@ -1,9 +1,9 @@
-export const formatDateTime = (dateString, format = 'DD-MM-YYYY HH:mm:ss') => {
+export const formatDateTime = (dateString, format = 'DD-MM-YYYY HH:mm') => {
   const options = {
     hour12: false,
     hour: '2-digit',
     minute: '2-digit',
-    second: '2-digit',
+
     // Include day, month, and year formatting
     day: '2-digit',
     month: '2-digit',

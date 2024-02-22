@@ -1,10 +1,17 @@
+<script setup lang="ts">
+const router = useRouter()
+const goBack = () => {
+    router.back()
+}
+</script>
+
 <template>
     <nav class="bg-[#E8E8E8] flex border-b-[1px] border-b-slate-400">
         <!-- Logo + Searchbar -->
         <div class="flex w-5/6 pl-6 gap-x-2 ">
 
             <!-- LOGO -->
-            <NuxtLink to="/" class="flex items-center h-14">
+            <NuxtLink to="/" @click="goBack()" class="flex items-center h-14">
                 <img src="/img/Logo-white.png" alt="monedium logo" class=" bg-[#E8E8E8] h-8" />
                 <!-- <p class="flex items-center text-2xl font-black">Monedium</p> -->
             </NuxtLink>
@@ -37,6 +44,4 @@
     </nav>
 </template>
 
-<script setup lang="ts">
 
-</script>

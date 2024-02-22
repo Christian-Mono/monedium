@@ -8,11 +8,11 @@ const props = defineProps<Article>()
 <template>
     <div class="p-4 pt-6 ">
         <!-- post section -->
-        {{ props }}
+
         <div class="pb-4 pt-6 border-b-[1px] border-b-gray-200">
             <!-- header -->
             <div class="flex py-2 gap-x-2">
-                <img :src="author?.profilePicture.url" :alt="author?.name" class="w-6 h-6 rounded-full" />
+                <img :src="$props.author.profilePicture.url" :alt="author?.name" class="w-6 h-6 rounded-full" />
                 <p>{{ author?.name }}</p>
                 <span>•</span>
                 <p>{{ formatDateTime(creationTime) }}</p>
@@ -29,7 +29,7 @@ const props = defineProps<Article>()
                 <div class="col-span-3 row-span-1 py-2 ">
                     <div class="flex">
                         <div class="flex items-center justify-start w-3/4 gap-x-4">
-                            <button class="px-2 bg-gray-400 rounded-full">{{ tag.tagName }}</button>
+                            <button class="px-2 bg-gray-400 rounded-full">{{ }}</button>
                             <p class="font-thin text-center">{{ readingTime }} mins to read</p>
                         </div>
                         <div class="flex justify-end w-1/4 pr-3 gap-x-4 place-self-center">
@@ -55,4 +55,4 @@ const props = defineProps<Article>()
             </div>
         </div>
     </div>
-</template>../types/Article.props
+</template>

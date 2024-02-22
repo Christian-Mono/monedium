@@ -5,6 +5,8 @@ export type Author = {
   bio: string
   name: string
   profilePicture: Image
+  positionRole: string
+  followers: number
 }
 export type Tag = {
   tagName: string
@@ -17,6 +19,12 @@ export type Article = {
   creationTime: string
   content: string
   readingTime: number
-  thumbnail: string
+  thumbnail: {
+    url: string
+  }
   tag: Tag
+}
+
+export type ArticleCollection = {
+  items: Article | []
 }
