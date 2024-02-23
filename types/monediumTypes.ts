@@ -1,5 +1,5 @@
 export type Image = {
-  url: string
+  url: string | null | undefined
 }
 export type Author = {
   bio: string
@@ -25,6 +25,27 @@ export type Article = {
   tag: Tag
 }
 
-export type ArticleCollection = {
-  items: Article | []
+export type Sys = {
+  id: string
 }
+
+export type ArticleCollection = {
+  total: number
+}
+
+export type LinkedFrom = {
+  articleCollection?: ArticleCollection | null
+}
+
+export type TagArrayItem = {
+  tagName?: string | null
+  sys: Sys
+  linkedFrom?: LinkedFrom | null
+}
+export type TagItem = {
+  tagName?: string | null
+  sys: Sys
+  linkedFrom?: LinkedFrom | null
+} | null
+
+export type TagArray = TagItem[]
