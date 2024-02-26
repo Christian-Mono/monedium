@@ -12,3 +12,7 @@ export const formatDateTime = (dateString, format = 'DD-MM-YYYY HH:mm') => {
   const dateObj = new Date(dateString)
   return dateObj.toLocaleString('en-US', options)
 }
+
+export const filterByTag = (articles, tagName) => {
+  return articles?.filter(article => article?.tag?.tagName === tagName)
+}
