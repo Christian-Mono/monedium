@@ -1,19 +1,17 @@
 <script setup lang="ts">
-const router = useRouter()
-const goBack = () => {
-    router.back()
-}
+
+const isTailwindLoaded = ref(false);
+
+onMounted(() => {
+    isTailwindLoaded.value = true;
+});
 </script>
-
 <template>
-    <nav class="bg-[#E8E8E8] flex border-b-[1px] border-b-slate-400">
-        <!-- Logo + Searchbar -->
+    <nav class="bg-[#E8E8E8] flex border-b-[1px] border-b-slate-400" v-if="isTailwindLoaded">
         <div class="flex w-5/6 pl-6 gap-x-2 ">
-
             <!-- LOGO -->
-            <NuxtLink to="/" @click="goBack()" class="flex items-center h-14">
+            <NuxtLink to="/" class="flex items-center h-14">
                 <img src="/img/Logo-white.png" alt="monedium logo" class=" bg-[#E8E8E8] h-8" />
-                <!-- <p class="flex items-center text-2xl font-black">Monedium</p> -->
             </NuxtLink>
             <!-- SEARCHBAR -->
             <div class=" hidden sm:flex items-center h-10 px-2 my-2 font-semibold bg-[#F9F9F9] rounded-3xl">
@@ -30,8 +28,7 @@ const goBack = () => {
         </div>
         <div class="flex w-1/6 pr-6 gap-x-7">
             <button class="flex items-center gap-x-1 h-14 group">
-                <!-- forse da ricaricare come svg per l'hover effect -->
-                <img src="/icons/navWrite.png" alt="write-post" class="h-5 text-[#a8a8a8]group-hover:text-black">
+                <img src="/icons/navWrite.png" alt="write-post" class="h-5 text-[#a8a8a8] group-hover:text-black">
                 <p class="text-[#858585] h-4 mb-1 align-middle font-thin group-hover:text-black">Write</p>
             </button>
             <button class="flex items-center h-14">
