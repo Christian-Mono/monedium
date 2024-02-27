@@ -7,22 +7,22 @@ export type Author = {
   profilePicture: Image
   positionRole: string
   followers: number
+  sys: Sys
 }
 export type Tag = {
   tagName: string
+  sys: Sys
 }
 export type Article = {
-  title: string
-  id: string
+  title?: string | null | undefined
   slug: string
-  author: Author
-  creationTime: string
-  content: string
-  readingTime: number
-  thumbnail: {
-    url: string
-  }
-  tag: Tag
+  author: Author | null | undefined
+  creationTime?: string | null | undefined
+  content?: string | null | undefined
+  readingTime?: number | null | undefined
+  thumbnail?: Image | null | undefined
+  tag?: Tag | null | undefined
+  claps: number
 }
 
 export type Sys = {
@@ -39,7 +39,7 @@ export type LinkedFrom = {
 
 export type TagArrayItem = {
   tagName?: string | null
-  sys: Sys
+
   linkedFrom?: LinkedFrom | null
 }
 export type TagItem = {
@@ -48,4 +48,4 @@ export type TagItem = {
   linkedFrom?: LinkedFrom | null
 } | null
 
-export type TagArray = TagItem[]
+export type TagArray = TagItem[] | null

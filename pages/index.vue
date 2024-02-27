@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { filterByTag } from '/utils/utils.js'
-import type { TagItem } from '/types/monediumTypes'
+import { filterByTag } from '../utils/utils'
+import type { TagItem, Article, Tag } from '../types/monediumTypes'
 import { useScroll } from '@vueuse/core'
 
+/*Show only when loaded */
 const isTailwindLoaded = ref(false);
 
 onMounted(() => {
@@ -10,7 +11,7 @@ onMounted(() => {
 });
 /* graphql */
 const data = await GqlArticles()
-const articles = data.articleCollection?.items
+const articles = <Article[]>(data.articleCollection?.items)
 
 const uniqueAuthors = articles?.filter((author, index) => {
     return index === articles.findIndex(name => author?.author?.name === name?.author?.name)
@@ -21,11 +22,11 @@ const tagNames = computed(() => tagArray.value.map(tag => tag?.tagName).filter(B
 
 /* vueUse */
 const carousel = ref<HTMLElement | null>(null)
-const { x, arrivedState, isScrolling } = useScroll(carousel, { behavior: 'smooth' })
+const { x, arrivedState } = useScroll(carousel, { behavior: 'smooth' })
 /* filter articles by tag */
-const filteredArticles = ref([])
+const filteredArticles = ref<Article>([])
 const isFilterOn = ref(false)
-const setTag = (articles, tag) => {
+const setTag = (articles: Article, tag: Tag) => {
     filteredArticles.value = filterByTag(articles, tag)
     isFilterOn.value = true
 }
@@ -33,15 +34,13 @@ const resetFilter = () => {
     filteredArticles.value = articles
 }
 
-
-
-
 </script>
 <template>
     <div class="px-16 mx-auto" v-if="isTailwindLoaded">
 
         <!-- <pre>{{ filteredArticles }}</pre> -->
         <div class="flex" ref="el">
+
             <!-- ############################################# lEFT COLUMN ############################################  -->
             <div class="w-4/6 pr-4 overflow-auto ">
                 <!-- left carousel button -->
@@ -54,7 +53,7 @@ const resetFilter = () => {
                                     d="M480 480V128a32 32 0 0 1 64 0v352h352a32 32 0 1 1 0 64H544v352a32 32 0 1 1-64 0V544H128a32 32 0 0 1 0-64z" />
                             </svg>
                         </button>
-                        <button v-else @click="x -= 45"
+                        <button v-else @click="x -= 70"
                             class="absolute p-2 pr-10 bg-gradient-to-r from-white to-transparent z-2 top-6"><svg
                                 xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 1024 1024"
                                 class="h-4 mt-3 ">
@@ -76,7 +75,7 @@ const resetFilter = () => {
                             <!-- hidden when reaches the limit on right side -->
                             <button v-if="arrivedState.right" class="hidden" />
                             <!-- scroll right button -->
-                            <button v-else @click="x += 45"
+                            <button v-else @click="x += 70"
                                 class="absolute right-0 p-2 pl-10 z-2 bg-gradient-to-l from-white to-transparent top-6">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 1024 1024"
                                     class="h-4 mt-3">
@@ -166,21 +165,6 @@ const resetFilter = () => {
                         on any story to easily add it to your reading list or a custom list that you can
                         share</span>
                 </div>
-            </div>
-        </div>
-    </div>
-    <div v-else="!isTailwindLoaded">
-        <div class="flex items-center justify-center w-full h-full">
-            <div class="flex items-center justify-center mt-20 space-x-1 text-sm text-gray-700">
-
-                <svg fill='none' class="w-6 h-6 animate-spin" viewBox="0 0 32 32" xmlns='http://www.w3.org/2000/svg'>
-                    <path clip-rule='evenodd'
-                        d='M15.165 8.53a.5.5 0 01-.404.58A7 7 0 1023 16a.5.5 0 011 0 8 8 0 11-9.416-7.874.5.5 0 01.58.404z'
-                        fill='currentColor' fill-rule='evenodd' />
-                </svg>
-
-
-                <div> Preparasi al decollo...🚀</div>
             </div>
         </div>
     </div>

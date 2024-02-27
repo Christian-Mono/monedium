@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { formatDateTime } from '~/utils/utils.js';
-import type { Article } from '../types/monediumTypes';
+import type { Article, Author, Tag } from '../types/monediumTypes';
 
 const props = defineProps<Article>()
 

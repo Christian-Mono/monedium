@@ -3,8 +3,9 @@
 const route = useRoute()
 
 const slug = route.params.slug
-import type { ArticleCollection, Article } from '../../types/monediumTypes';
-const { data, error, pending, refresh } = await useAsyncGql('articleCollection', {
+import type { Article } from '../../types/monediumTypes';
+
+const { data, error } = await useAsyncGql('articleCollection', {
     id: slug.toString()
 });
 
@@ -13,7 +14,7 @@ if (error.value) {
     console.error(error.value.cause.gqlErrors);
 }
 
-const singleArticle = data.value.articleCollection?.items[0];
+const singleArticle = data.value.articleCollection?.items[0] as Article;
 
 </script>
 
@@ -28,7 +29,7 @@ const singleArticle = data.value.articleCollection?.items[0];
                     {{ singleArticle?.title }}
                 </h2>
                 <div class="flex gap-4 py-4 align-middle">
-                    <img :src="singleArticle?.author?.profilePicture?.url" :alt="singleArticle?.author?.name"
+                    <img :src="(singleArticle?.author?.profilePicture?.url as string)" :alt="singleArticle?.author?.name"
                         class="w-12 h-12 rounded-full" />
 
                     <div>
@@ -101,7 +102,7 @@ const singleArticle = data.value.articleCollection?.items[0];
             <!-- single article img + body -->
             <div class="py-4 gap-y-2 ">
 
-                <img :src="singleArticle?.thumbnail?.url" :alt="singleArticle?.title" class="object-cover">
+                <img :src="singleArticle?.thumbnail?.url ?? ''" :alt="singleArticle?.title ?? ''" class="object-cover">
                 <p class="pt-6 leading-loose ">
                     {{ singleArticle?.content }}
                 </p>
@@ -167,14 +168,14 @@ const singleArticle = data.value.articleCollection?.items[0];
     <div class="bg-[#e8e8e8] w-[100%] pt-12">
         <div class=" items-center justify-start px-[20%] gap-x-2 ">
             <div class="mb-2">
-                <img :src="singleArticle?.author?.profilePicture?.url" :alt="singleArticle?.author?.name"
+                <img :src="singleArticle?.author?.profilePicture?.url ?? ''" :alt="singleArticle?.author?.name"
                     class="object-cover w-16 h-16 bg-white rounded-full" />
             </div>
             <div class="flex gap-x-6 border-y-[1px] border-gray-200 py-2">
                 <!-- option tab > left side svgs -->
                 <div class="flex w-4/6 gap-x-6">
                     <div class=" gap-y-2">
-                        <p class="text-xl font-bold">Written by {{ singleArticle?.author.name }}</p>
+                        <p class="text-xl font-bold">Written by {{ singleArticle?.author?.name }}</p>
                         <div class="flex gap-x-2">
                             <p>{{ singleArticle?.author?.followers }} Followers</p>
                             <span>•</span>
