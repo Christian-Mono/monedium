@@ -109,7 +109,7 @@ const singleArticle = data.value.articleCollection?.items[0] as Article;
                 <!-- tag -->
             </div>
             <button class="h-15 p-3 justify-center text-black bg-[#f2f2f2] rounded-full w-30">{{ singleArticle?.tag?.tagName
-            }}</button>
+                ?? '' }}</button>
             <!-- ending content option bar -->
             <div class="flex pt-6 gap-x-6">
                 <div class="flex w-4/6 gap-x-6">

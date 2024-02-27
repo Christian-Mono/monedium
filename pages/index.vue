@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { filterByTag } from '../utils/utils'
-import type { TagItem, Article, Tag } from '../types/monediumTypes'
+import type { TagItem, Article, Tag, Sys } from '../types/monediumTypes'
 import { useScroll } from '@vueuse/core'
 
 /*Show only when loaded */
@@ -11,7 +11,7 @@ onMounted(() => {
 });
 /* graphql */
 const data = await GqlArticles()
-const articles = <Article[]>(data.articleCollection?.items)
+const articles = <Article[]>(data.articleCollection?.items || [])
 
 const uniqueAuthors = articles?.filter((author, index) => {
     return index === articles.findIndex(name => author?.author?.name === name?.author?.name)
@@ -24,9 +24,9 @@ const tagNames = computed(() => tagArray.value.map(tag => tag?.tagName).filter(B
 const carousel = ref<HTMLElement | null>(null)
 const { x, arrivedState } = useScroll(carousel, { behavior: 'smooth' })
 /* filter articles by tag */
-const filteredArticles = ref<Article>([])
+const filteredArticles = ref<Article[]>([])
 const isFilterOn = ref(false)
-const setTag = (articles: Article, tag: Tag) => {
+const setTag = (articles: Article[], tag: Tag | string) => {
     filteredArticles.value = filterByTag(articles, tag)
     isFilterOn.value = true
 }
@@ -36,7 +36,7 @@ const resetFilter = () => {
 
 </script>
 <template>
-    <div class="px-16 mx-auto" v-if="isTailwindLoaded">
+    <div class="px-16 mx-auto">
 
         <!-- <pre>{{ filteredArticles }}</pre> -->
         <div class="flex" ref="el">
@@ -87,11 +87,12 @@ const resetFilter = () => {
                     </div>
                 </div>
                 <!-- ###########-ARTICLES GQL-########### -->
-                <Article v-if="isFilterOn" v-for="article in filteredArticles" :key="article?.sys.id" v-bind="article"
-                    :author="article?.author" :slug="article?.slug" :id="article?.sys.id" />
+                <Article v-if="isFilterOn" v-for="article in  filteredArticles "
+                    :key="'filtered_' + (article?.sys?.id || 'no_id')" v-bind="article" :author="article?.author"
+                    :slug="article?.slug" :id="article?.sys?.id" />
 
-                <Article v-else v-for="article in articles" :key="article?.sys.id" v-bind="article"
-                    :author="article?.author" :slug="article?.slug" :id="article?.sys.id" />
+                <Article v-else v-for=" article  in  articles " :key="article?.sys?.id" v-bind="article"
+                    :author="article?.author" :slug="article?.slug" :id="article?.sys?.id" />
             </div>
 
             <!-- ############################################# RIGHT COLUMN ############################################  -->
@@ -108,7 +109,7 @@ const resetFilter = () => {
                     Staff pick
                 </h2>
                 <!-- staff post -->
-                <div v-for="staff in uniqueAuthors?.slice(0, 3)" :key="staff?.sys.id" class="py-2">
+                <div v-for=" staff  in  uniqueAuthors?.slice(0, 3) " :key="staff?.sys?.id" class="py-2">
                     <NuxtLink :to="`article/${staff?.slug}`">
 
                         <div class="flex gap-x-1">
@@ -130,7 +131,7 @@ const resetFilter = () => {
                 <!-- tags -->
                 <div class="flex-wrap -ml-4 space-x-4 space-y-2 ">
                     <button @click="setTag(articles, recommendedTopic?.tagName)"
-                        v-for="recommendedTopic in tagArray?.slice(0, 5)" :key="recommendedTopic?.sys.id"
+                        v-for=" recommendedTopic  in  tagArray?.slice(0, 5) " :key="recommendedTopic?.sys.id"
                         class="p-2 ml-4 transition duration-100 ease-in-out bg-gray-400 rounded-3xl opacity-60 hover:opacity-100">
                         {{ recommendedTopic?.tagName }}
                     </button>
@@ -143,7 +144,7 @@ const resetFilter = () => {
                 <h2 class="pt-8 pb-2 font-bold text-md">Who to follow</h2>
                 <!-- profiles -->
 
-                <div v-for="suggestedUser in uniqueAuthors?.slice(0, 3)" class="flex py-4 gap-x-6">
+                <div v-for=" suggestedUser  in  uniqueAuthors?.slice(0, 3) " class="flex py-4 gap-x-6">
                     <div class="flex justify-start col-span-1 row-span-3 m-0">
                         <img :src="suggestedUser?.author?.profilePicture?.url ?? ''" alt="monet"
                             class="flex-1 w-8 h-8 rounded-full">

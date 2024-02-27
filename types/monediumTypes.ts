@@ -9,20 +9,24 @@ export type Author = {
   followers: number
   sys: Sys
 }
-export type Tag = {
-  tagName: string
-  sys: Sys
-}
+export type Tag =
+  | {
+      tagName: string
+      sys: Sys
+    }
+  | null
+  | undefined
 export type Article = {
   title?: string | null | undefined
-  slug: string
-  author: Author | null | undefined
+  slug?: string | null | undefined
+  author?: Author | null | undefined
   creationTime?: string | null | undefined
   content?: string | null | undefined
   readingTime?: number | null | undefined
   thumbnail?: Image | null | undefined
   tag?: Tag | null | undefined
-  claps: number
+  claps?: number | null | undefined
+  sys?: Sys | null | undefined
 }
 
 export type Sys = {

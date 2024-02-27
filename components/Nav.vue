@@ -1,13 +1,8 @@
 <script setup lang="ts">
 
-const isTailwindLoaded = ref(false);
-
-onMounted(() => {
-    isTailwindLoaded.value = true;
-});
 </script>
 <template>
-    <nav class="bg-[#E8E8E8] flex border-b-[1px] border-b-slate-400" v-if="isTailwindLoaded">
+    <nav class="bg-[#E8E8E8] flex border-b-[1px] border-b-slate-400">
         <div class="flex w-5/6 pl-6 gap-x-2 ">
             <!-- LOGO -->
             <NuxtLink to="/" class="flex items-center h-14">
