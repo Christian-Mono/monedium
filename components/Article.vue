@@ -1,18 +1,18 @@
 <script setup lang="ts">
-import { formatDateTime } from '~/utils/utils.js';
+import { formatDateTime } from '../utils/utils.js';
 import type { Article, Author, Tag } from '../types/monediumTypes';
 
 const props = defineProps<Article>()
 
 </script>
 <template>
-  <div class="p-4 pt-6 ">
+  <div class="sm:p-4 sm:pt-6 ">
     <!-- post section -->
 
     <NuxtLink :to="`article/${slug}`" class="pb-4 pt-6 border-b-[1px] border-b-gray-200">
       <!-- header -->
       <div class="flex py-2 gap-x-2">
-        <img :src="author?.profilePicture.url" :alt="author?.name" class="w-6 h-6 rounded-full" />
+        <img :src="author?.profilePicture.url ?? ''" :alt="author?.name" class="w-6 h-6 rounded-full" />
         <p>{{ author?.name }}</p>
         <span>•</span>
         <p>{{ formatDateTime(creationTime) }}</p>
@@ -20,7 +20,7 @@ const props = defineProps<Article>()
       <!-- grid of post -->
 
       <div class="grid grid-cols-4 grid-rows-3 gap-2">
-        <h2 class="h-8 col-span-3 row-span-1 text-2xl font-bold">
+        <h2 class="col-span-3 row-span-1 text-lg font-bold md:text-2xl">
           {{ title }}
         </h2>
         <p class="col-span-3 row-span-1 line-clamp-2">
@@ -29,10 +29,10 @@ const props = defineProps<Article>()
         <div class="col-span-3 row-span-1 py-2 ">
           <div class="flex">
             <div class="flex items-center justify-start w-3/4 gap-x-4">
-              <button class="px-2 bg-gray-400 rounded-full">{{ tag.tagName }}</button>
+              <button class="px-2 bg-gray-400 rounded-full">{{ tag?.tagName }}</button>
               <p class="font-thin text-center">{{ readingTime }} mins to read</p>
             </div>
-            <div class="flex justify-end w-1/4 pr-3 gap-x-4 place-self-center">
+            <div class="justify-end hidden w-1/4 pr-3 sm:flex gap-x-4 place-self-center">
               <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="h-6">
                 <path fill="currentColor"
                   d="M12 16.917L6 19.5V4h7v1H7v12.95l5-2.15l5 2.15V11h1v8.5zM7 5h6zm10 4V7h-2V6h2V4h1v2h2v1h-2v2z" />
@@ -49,7 +49,7 @@ const props = defineProps<Article>()
             </div>
           </div>
         </div>
-        <img :src="thumbnail.url" :alt="title"
+        <img :src="thumbnail?.url ?? ''" :alt="title ?? ''"
           class="object-cover col-span-1 col-start-4 row-span-2 row-start-1 place-self-center h-28">
       </div>
     </NuxtLink>

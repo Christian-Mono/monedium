@@ -1,15 +1,9 @@
 <script setup lang="ts">
 import { filterByTag } from '../utils/utils'
-import type { TagItem, Article, Tag, Sys } from '../types/monediumTypes'
+import type { TagItem, Article, Tag } from '../types/monediumTypes'
 import { useScroll } from '@vueuse/core'
 
-/*Show only when loaded */
-const isTailwindLoaded = ref(false);
 
-onMounted(() => {
-    isTailwindLoaded.value = true;
-});
-/* graphql */
 const data = await GqlArticles()
 const articles = <Article[]>(data.articleCollection?.items || [])
 
@@ -38,11 +32,11 @@ const resetFilter = () => {
 <template>
     <div class="px-16 mx-auto">
 
-        <!-- <pre>{{ filteredArticles }}</pre> -->
+        <!--        <pre>{{ data?.articleCollection?.items }}</pre> -->
         <div class="flex" ref="el">
 
             <!-- ############################################# lEFT COLUMN ############################################  -->
-            <div class="w-4/6 pr-4 overflow-auto ">
+            <div class="w-full pr-4 overflow-auto md:w-4/6 ">
                 <!-- left carousel button -->
                 <div class="relative">
                     <div class="absolute inset-y-0 left-0 pr-20 ">
@@ -98,7 +92,7 @@ const resetFilter = () => {
             <!-- ############################################# RIGHT COLUMN ############################################  -->
 
             <!-- Staff pick -->
-            <div class="sticky top-0 w-2/6 px-8 border-2 border-l-gray-200">
+            <div class="sticky top-0 hidden w-2/6 px-8 border-2 border-l-gray-200 md:block">
                 <!-- <div v-for="pick in staffPicks" :key="pick.id">
                 </div> -->
                 <div class="items-center py-8 text-center">
