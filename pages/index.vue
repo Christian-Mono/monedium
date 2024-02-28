@@ -31,8 +31,6 @@ const resetFilter = () => {
 </script>
 <template>
     <div class="px-16 mx-auto">
-
-        <!--        <pre>{{ data?.articleCollection?.items }}</pre> -->
         <div class="flex" ref="el">
 
             <!-- ############################################# lEFT COLUMN ############################################  -->
