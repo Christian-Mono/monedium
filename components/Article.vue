@@ -3,7 +3,7 @@ import { formatDateTime } from '../utils/utils.js';
 import type { Article, Author, Tag } from '../types/monediumTypes';
 
 const props = defineProps<Article>()
-
+const { $markdown } = useNuxtApp()
 </script>
 <template>
   <div class="sm:p-4 sm:pt-6 ">
@@ -23,9 +23,9 @@ const props = defineProps<Article>()
         <h2 class="col-span-3 row-span-1 text-lg font-bold md:text-2xl">
           {{ title }}
         </h2>
-        <p class="col-span-3 row-span-1 line-clamp-2">
-          {{ content }}
-        </p>
+        <p v-html="$markdown.render(content)" class="col-span-3 row-span-1 line-clamp-3" />
+
+
         <div class="col-span-3 row-span-1 py-2 ">
           <div class="flex">
             <div class="flex items-center justify-start w-3/4 gap-x-4">

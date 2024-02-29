@@ -5,7 +5,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
 
   modules: ['@nuxtjs/tailwindcss', '@vueuse/nuxt', 'nuxt-graphql-client'],
-
+  css: ['./assets/css/tailwind.css'],
   runtimeConfig: {
     public: {
       'graphql-client': {

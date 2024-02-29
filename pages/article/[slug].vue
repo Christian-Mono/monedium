@@ -1,5 +1,5 @@
 <script setup lang="ts">
-
+const { $markdown } = useNuxtApp()
 const route = useRoute()
 
 const slug = route.params.slug
@@ -19,7 +19,7 @@ const singleArticle = data.value.articleCollection?.items[0] as Article;
 </script>
 
 <template>
-    <div class="py-6 px-2 lg:px-[10%] ">
+    <div class="px-12 py-6 ">
         <!-- post section -->
 
         <div class="pt-6 pb-4 ">
@@ -28,7 +28,7 @@ const singleArticle = data.value.articleCollection?.items[0] as Article;
                 <h2 class="text-4xl font-bold">
                     {{ singleArticle?.title }}
                 </h2>
-                <div class="flex gap-4 py-4 align-middle">
+                <div class="flex py-4 align-middle gap-x-4">
                     <img :src="(singleArticle?.author?.profilePicture?.url as string)" :alt="singleArticle?.author?.name"
                         class="w-12 h-12 rounded-full" />
 
@@ -103,9 +103,7 @@ const singleArticle = data.value.articleCollection?.items[0] as Article;
             <div class="py-4 gap-y-2 ">
 
                 <img :src="singleArticle?.thumbnail?.url ?? ''" :alt="singleArticle?.title ?? ''" class="object-cover">
-                <p class="pt-6 leading-loose ">
-                    {{ singleArticle?.content }}
-                </p>
+                <p v-html="$markdown.render(singleArticle?.content)" class="justify-center py-6 mx-auto prose text-left " />
                 <!-- tag -->
             </div>
             <button class="h-15 p-3 justify-center text-black bg-[#f2f2f2] rounded-full w-30">{{ singleArticle?.tag?.tagName
