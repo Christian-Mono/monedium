@@ -4,8 +4,13 @@ import { defineNuxtConfig } from 'nuxt/config'
 export default defineNuxtConfig({
   devtools: { enabled: true },
 
-  modules: ['@nuxtjs/tailwindcss', '@vueuse/nuxt', 'nuxt-graphql-client'],
+  modules: ['@nuxtjs/tailwindcss', '@vueuse/nuxt', 'nuxt-graphql-client', '@nuxtjs/algolia'],
   css: ['./assets/css/tailwind.css'],
+  algolia: {
+    instantSearch: {
+      theme: 'algolia',
+    },
+  },
   runtimeConfig: {
     public: {
       'graphql-client': {

@@ -17,18 +17,35 @@ export type Tag =
   | null
   | undefined
 export type Article = {
-  title?: string | null | undefined
-  slug?: string | null | undefined
-  author?: Author | null | undefined
-  creationTime?: string | null | undefined
-  content?: string | null | undefined
-  readingTime?: number | null | undefined
-  thumbnail?: Image | null | undefined
-  tag?: Tag | null | undefined
-  claps?: number | null | undefined
-  sys?: Sys | null | undefined
+  title?: string | null
+  slug?: string | null
+  author?: Author | null
+  creationTime?: string | null
+  content?: string | null
+  readingTime?: number | null
+  thumbnail?: Image | null
+  tag?: Tag | null
+  claps?: number | null
+  sys?: Sys | null
 }
 
+export type SinglePost = {
+  title: string
+  slug: string
+  author: {
+    bio: string
+    name: string
+    profilePicture: { url: string }
+    positionRole: string
+    followers: number
+  }
+  creationTime: string
+  content: string
+  readingTime: number
+  thumbnail: Image
+  tag: string
+  claps: number
+}
 export type Sys = {
   id: string
 }

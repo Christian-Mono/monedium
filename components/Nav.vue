@@ -1,9 +1,11 @@
 <script setup lang="ts">
 
+
 </script>
 <template>
     <nav class="bg-[#E8E8E8] flex border-b-[1px] border-b-slate-400">
         <div class="flex w-1/2 pl-6 lg:w-5/6 gap-x-2 ">
+
             <!-- LOGO -->
             <NuxtLink to="/" class="flex items-center h-14">
                 <img src="/img/Logo-white.png" alt="monedium logo" class="object-cover bg-[#E8E8E8] h-8" />
