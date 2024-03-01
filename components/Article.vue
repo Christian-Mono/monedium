@@ -23,7 +23,7 @@ const { $markdown } = useNuxtApp()
         <h2 class="col-span-3 row-span-1 text-lg font-bold md:text-2xl">
           {{ title }}
         </h2>
-        <p v-html="$markdown.render(content)" class="col-span-3 row-span-1 line-clamp-3" />
+        <p v-html="$markdown.render(content ?? '')" class="col-span-3 row-span-1 line-clamp-3" />
 
 
         <div class="col-span-3 row-span-1 py-2 ">

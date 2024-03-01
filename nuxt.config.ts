@@ -7,6 +7,8 @@ export default defineNuxtConfig({
   modules: ['@nuxtjs/tailwindcss', '@vueuse/nuxt', 'nuxt-graphql-client', '@nuxtjs/algolia'],
   css: ['./assets/css/tailwind.css'],
   algolia: {
+    apiKey: process.env.ALGOLIA_SEARCH_API_KEY,
+    applicationId: process.env.ALGOLIA_APPLICATION_ID,
     instantSearch: {
       theme: 'algolia',
     },

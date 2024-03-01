@@ -97,9 +97,9 @@ const test = (text: string) => {
             <!-- single article img + body -->
             <div class="py-4 gap-y-2 ">
 
-                <img :src="thumbnail?.url ?? ''" :alt="title ?? ''" class="object-cover pb-12">
+                <img :src="thumbnail?.url ?? ''" :alt="title ?? ''" class="object-cover pb-12 mx-auto">
                 <Markdown :content="content"
-                    class="justify-center mx-auto prose text-left prose-h1:mb-0 prose-h2:m-0 prose-ul:px-0 prose-ul:h-8 prose-li:m-0 prose-p:m-0 prose-blockquote:text-right prose-h3:mb-0 prose-h3:text-green-400 prose-blockquote:bg-gray-200 prose-blockquote:px-2 prose-h1:text-green-400 prose-blockquote:rounded-lg"
+                    class="mx-auto prose text-left prose-h1:mb-0 prose-h2:mb-0 prose-ul:px-0 prose-ul:mb-0 prose-li:mt-0 prose-p:mb-0 prose-blockquote:text-right prose-h3:mb-0 prose-h3:text-green-400 prose-blockquote:bg-gray-200 prose-blockquote:px-2 prose-h1:text-green-400 prose-blockquote:rounded-lg"
                     :inline="false" />
 
 
