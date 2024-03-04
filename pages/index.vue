@@ -30,6 +30,7 @@ const resetFilter = () => {
 
 </script>
 <template>
+    <Nav />
     <div class="px-16 mx-auto">
         <div class="flex" ref="el">
 

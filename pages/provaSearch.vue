@@ -3,8 +3,8 @@
 </script>
 
 <template>
-    <div class="w-2/6">
-        <SearchProvider :indexName="$route.params.indexName" />
+    <div>
+        <SearchProvider />
     </div>
 </template>
 

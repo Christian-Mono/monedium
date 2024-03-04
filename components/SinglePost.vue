@@ -14,7 +14,17 @@ const test = (text: string) => {
 
 </script>
 <template>
-    <div class="px-12 py-6 ">
+    <div class="flex mx-auto lg:w-5/6 gap-x-2 ">
+
+        <!-- LOGO -->
+        <NuxtLink to="/"
+            class="flex items-center h-14 bg-[#E8E8E8] rounded-full border-b-[1px] mt-6 p-2 border-b-slate-400">
+            <img src="/img/Logo-white.png" alt="monedium logo" class="object-cover bg-[#E8E8E8] h-8 rounded-full " />
+
+        </NuxtLink>
+
+    </div>
+    <div class="px-12 pb-6 ">
         <!-- post section -->
 
         <div class="pt-6 pb-4 ">
