@@ -10,8 +10,7 @@
             <NuxtLink to="/" class="flex items-center h-14">
                 <img src="/img/Logo-white.png" alt="monedium logo" class="object-cover bg-[#E8E8E8] h-8" />
             </NuxtLink>
-            <!-- searchbar da inserire -->
-
+            <!-- SEARCHBAR -->
             <SearchProvider />
         </div>
         <div class="flex w-1/6 pr-6 gap-x-7">
