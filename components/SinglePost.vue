@@ -109,7 +109,7 @@ const test = (text: string) => {
 
                 <img :src="thumbnail?.url ?? ''" :alt="title ?? ''" class="object-cover pb-12 mx-auto">
                 <Markdown :content="content"
-                    class="mx-auto prose text-left prose-h1:mb-0 prose-h2:mb-0 prose-h3:mb-0 prose-p:my-0 prose-ul:m-0 prose-ul:p-0 prose-ol-p-0 prose-ol:m-0 prose-li:m-0 prose-li:p-0 prose-blockquote:text-right prose-h3:text-green-400 prose-blockquote:bg-gray-200 prose-blockquote:px-2 prose-h1:text-green-400 prose-blockquote:rounded-lg"
+                    class="mx-auto prose text-left prose-h1:mb-0 prose-h2:mb-0 prose-h3:mb-0 prose-p:my-0 prose-ul:m-0 prose-ul:p-0 prose-ol-p-0 prose-ol:m-0 prose-li:m-0 prose-li:p-0 prose-blockquote:text-left prose-blockquote:mx-12 prose-h3:text-green-400 prose-blockquote:bg-gray-200 prose-blockquote:px-2 prose-h1:text-green-400 prose-blockquote:rounded-lg"
                     :inline="false" />
 
 
